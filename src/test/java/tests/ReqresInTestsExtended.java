@@ -34,7 +34,7 @@ public class ReqresInTestsExtended extends TestBase {
                 .then()
                 .spec(response)
                 .body("data.findAll{it.email =~/.*?@reqres.in/}.email.flatten()",
-                        hasItem("george.bluth@reqres.in"));
+                        hasItem("janet.weaver@reqres.in"));
     }
 
     @Test
@@ -72,7 +72,7 @@ public class ReqresInTestsExtended extends TestBase {
                 .spec(response)
                 .extract().as(UserData.class);
         assertThat(data.getPerPage()).isEqualTo(6);
-        assertThat(data.getTotal()).isEqualTo(12);
+        assertThat(data.getTotalPages()).isEqualTo(2);
 
 
     }
@@ -104,9 +104,9 @@ public class ReqresInTestsExtended extends TestBase {
     @DisplayName("Pojo unSuccessful login test")
     public void postLoginUnsuccessful() {
         UserDataBody userData = new UserDataBody();
-        userData.setEmail("peter@klaven");
-        userData.setName("Juan");
-        userData.setJob("clerk");
+        userData.setEmail("nana@ktimy");
+        userData.setName("Hora");
+        userData.setJob("Timy");
 
         UserDataResponse responseModel = given()
                 .spec(loginUnSpec)
@@ -127,7 +127,7 @@ public class ReqresInTestsExtended extends TestBase {
     public void postLoginTest() {
         UserLoginBody loginBody = new UserLoginBody();
         loginBody.setEmail("eve.holt@reqres.in");
-        loginBody.setPassword("pistol");
+        loginBody.setPassword("cityslicka");
 
         UserLoginResponse loginResponse = given()
                 .spec(loginSpec)
